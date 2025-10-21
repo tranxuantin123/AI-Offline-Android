@@ -1,4 +1,4 @@
-name: Android Build (Simple)
+name: Android Build (Simple Fixed)
 
 on:
   push:
@@ -24,7 +24,10 @@ jobs:
         uses: gradle/gradle-build-action@v3
 
       - name: ✅ Allow gradlew to run
-        run: chmod +x gradlew
+        run: |
+          chmod +x gradlew
+          chmod +x ./gradlew
+          chmod -R +x gradle/
 
       - name: 🏗️ Build Debug APK
         run: ./gradlew assembleDebug
