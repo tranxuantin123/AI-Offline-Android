@@ -6,12 +6,12 @@
 ##
 ##############################################################################
 
-APP_NAME="Gradle"
-APP_BASE_NAME=`basename "$0"`
+DIR="$(cd "$(dirname "$0")" && pwd)"
+GRADLE_WRAPPER_JAR="$DIR/gradle/wrapper/gradle-wrapper.jar"
 
-# Add default JVM options here if desired
-DEFAULT_JVM_OPTS=""
+if [ ! -f "$GRADLE_WRAPPER_JAR" ]; then
+  echo "Gradle wrapper jar not found at $GRADLE_WRAPPER_JAR"
+  exit 1
+fi
 
-# Use the wrapper jar
-DIR=$(cd "$(dirname "$0")" && pwd)
-"$DIR/gradle/wrapper/gradle-wrapper.jar" "$@"
+java -Dorg.gradle.appname=gradlew -classpath "$GRADLE_WRAPPER_JAR" org.gradle.wrapper.GradleWrapperMain "$@"
